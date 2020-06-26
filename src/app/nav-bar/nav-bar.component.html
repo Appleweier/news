@@ -1,0 +1,52 @@
+<!-- <Navbar [icon]="icon" [rightContent]="rightContent" [mode]="'light'" (onLeftClick)="onLeftClick()">
+    NavBar
+</Navbar> -->
+<Navbar [leftContent]="lc" [rightContent]="popover" (onLeftClick)="onLeftClick()">
+    
+    <a id="toIndex" routerLink="/" >民大新闻</a>
+</Navbar>
+
+<ng-template #lc>
+  <img class="logo" src="../../assets/icon/logo.JPG" alt="">
+</ng-template>
+
+
+<ng-template #icon>
+    <Icon [type]="'left'"></Icon>
+    <Icon [type]="'search'" [ngStyle]="{ marginRight: '16px' }"></Icon>
+
+</ng-template>
+
+<ng-template #popover>
+    <Icon
+      Popover
+      [ngStyle]="{ height: '100%', display: 'flex', 'align-items': 'center' }"
+      [mask]="true"
+      [showArrow]="true"
+      [overlay]="overlay"
+      [type]="'ellipsis'"
+      [placement]="'bottomRight'"
+      (onSelect)="onSelect($event)"
+      (onVisibleChange)="onVisibleChange($event)"
+    ></Icon>
+  </ng-template>
+
+  <ng-template #overlay>
+    <PopoverItem [icon]="icon1">Scan</PopoverItem>
+    <PopoverItem [icon]="icon2" [ngStyle]="{ whiteSpace: 'nowrap' }">My Qrcode</PopoverItem>
+    <PopoverItem *ngIf="isLogined" [icon]="icon3">
+      <span (click)="onLogoutClick()" [ngStyle]="{ marginRight: 5 }">Logout</span>
+    </PopoverItem>
+  </ng-template>
+
+  <ng-template #icon1>
+    <Icon [src]="'https://gw.alipayobjects.com/zos/rmsportal/tOtXhkIWzwotgGSeptou.svg'" [size]="'xs'"></Icon>
+  </ng-template>
+
+  <ng-template #icon2>
+    <Icon [src]="'https://gw.alipayobjects.com/zos/rmsportal/PKAgAqZWJVNwKsAJSmXd.svg'" [size]="'xs'"></Icon>
+  </ng-template>
+
+  <ng-template #icon3>
+    <Icon [src]="'../../../assets/icon/log-in-outline.svg'" [size]="'xs'"></Icon>
+  </ng-template>

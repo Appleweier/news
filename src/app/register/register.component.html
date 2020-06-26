@@ -1,0 +1,17 @@
+<div class="am-demo-page">
+    <div class="am-list" style="margin:0;">
+        <div class="am-list-header">注册</div>
+        <div class="am-list-body">
+            <!-- <InputItem [type]="'bankCard'" [defaultValue]="'8888 8888 8888 8888'" [content]="'银行卡'"></InputItem> -->
+            <InputItem [type]="'text'" [placeholder]="'请输入你的姓名'" [content]="'姓名'" [(ngModel)]="username">
+            </InputItem>
+            <InputItem [type]="'text'" [placeholder]="'请输入你的学号'" [content]="'学号'" [(ngModel)]="no">
+            </InputItem>
+            <InputItem [(ngModel)]="pwd" [type]="'password'" [placeholder]="'小心不要给别人看见哦~'" [content]="'密码'"></InputItem>
+            <!-- <InputItem [type]="'number'" [placeholder]="'click to show number keyboard'" [content]="'数字键盘'"></InputItem> -->
+        </div>
+    </div>
+    <div id="_btn">
+        <div class="loginBtn" Button [type]="'primary'" (click)="register()">Register</div>
+    </div>
+</div>
