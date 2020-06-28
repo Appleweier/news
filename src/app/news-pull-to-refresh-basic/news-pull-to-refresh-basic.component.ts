@@ -1,11 +1,109 @@
 import { Component, OnInit } from '@angular/core';
-
+import { map } from 'rxjs/operators';
+import { NewsBrief } from '../newsBrief';
 @Component({
   selector: 'app-news-pull-to-refresh-basic',
   templateUrl: './news-pull-to-refresh-basic.component.html',
   styleUrls: ['./news-pull-to-refresh-basic.component.css']
 })
 export class NewsPullToRefreshBasicComponent implements OnInit {
+
+
+  newsList: NewsBrief[] = [
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+    { img: 'base64', title: '开发ing这是标题' },
+  ];
 
   isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(window.navigator.userAgent);
   pageLimit = 20;
@@ -24,7 +122,8 @@ export class NewsPullToRefreshBasicComponent implements OnInit {
   };
   dtPullToRefreshStyle = { height: this.state.height + 'px' };
 
-  constructor() {}
+
+  constructor() { }
 
   onClick() {
     this.directionCount++;

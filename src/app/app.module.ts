@@ -23,6 +23,8 @@ import { PersonalCenterComponent } from './personal-center/personal-center.compo
 import { RegisterComponent } from './register/register.component';
 import { MeetTroubleComponent } from './meet-trouble/meet-trouble.component';
 import { NewsPullToRefreshBasicComponent } from './news-pull-to-refresh-basic/news-pull-to-refresh-basic.component';
+import { NewsDetailComponent } from './news-detail/news-detail.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { NewsPullToRefreshBasicComponent } from './news-pull-to-refresh-basic/ne
     PersonalCenterComponent,
     RegisterComponent,
     MeetTroubleComponent,
-    NewsPullToRefreshBasicComponent
+    NewsPullToRefreshBasicComponent,
+    NewsDetailComponent,
+    SearchBarComponent
   ],
   imports: [
     HttpClientModule,

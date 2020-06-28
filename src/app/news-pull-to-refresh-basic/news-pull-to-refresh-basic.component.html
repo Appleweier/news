@@ -11,7 +11,18 @@ style="margin-bottom: 10px"
 [endReachedRefresh]="state.endReachedRefresh"
 (onRefresh)="pullToRefresh($event)"
 >
-<div *ngFor="let i of this.state.data" style="text-align: center; padding: 20px">{{ i }}</div>
+
+<a style="text-decoration: none;" *ngFor="let i of this.state.data" routerLink="/news/detail/{{i}}"  >
+
+    <div  class="newsList" > 
+        <div class="text">  {{ i }}{{newsList[i].title}}</div>
+        <div class="img">base64图像{{newsList[i].img}}</div>
+    </div>
+    <div style="clear: both;"></div>
+
+
+</a>
+
 </PullToRefresh>
 
 <ng-template #loading>

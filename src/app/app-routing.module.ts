@@ -8,6 +8,8 @@ import { LoginComponent } from './login/login.component';
 import { PersonalCenterComponent } from './personal-center/personal-center.component';
 import { RegisterComponent } from './register/register.component';
 import { MeetTroubleComponent } from './meet-trouble/meet-trouble.component';
+import { NewsDetailComponent } from './news-detail/news-detail.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 import { NewsPullToRefreshBasicComponent } from './news-pull-to-refresh-basic/news-pull-to-refresh-basic.component';
 
@@ -29,6 +31,7 @@ const routes: Routes = [
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'detail/:id', component: HeroDetailComponent },
+  { path: 'news/detail/:id', component: NewsDetailComponent },
   { path: 'login', component: LoginComponent },
   { path: 'personCenter', component: PersonalCenterComponent },
   { path: 'login/register', component: RegisterComponent },

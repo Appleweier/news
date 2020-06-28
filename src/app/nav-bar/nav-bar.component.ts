@@ -36,13 +36,16 @@ export class NavBarComponent implements OnInit {
         this.userService.user.pwd = '';
         this.userService.user.token = '';
         this.userService.user.username = '';
-        this.router.navigateByUrl('/');
+        this.router.navigateByUrl('/dashboard/news');
 
 
       } else {
         this._toast.info(`Logout Faild!`);
 
       }
+    }).catch(() => {
+      this._toast.info(`网络延迟异常！`);
+
     });
 
   }
