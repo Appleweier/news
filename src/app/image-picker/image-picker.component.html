@@ -1,0 +1,11 @@
+<ImagePicker
+[files]="files"
+[multiple]="multipleTab === 1"
+[selectable]="files.length < 1"
+(onChange)="fileChange($event)"
+
+></ImagePicker>
+<!-- <img style="position: fixed;top: 10px;" [src] = "avatar" alt="" style="height: 90px;"> -->
+<div Button (onClick)="updateAvatar()">保存头像</div>
+<button (click)="goBack()">go back</button>
+

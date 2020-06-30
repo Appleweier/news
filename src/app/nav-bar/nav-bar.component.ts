@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import axios from 'axios';
 import { ToastService } from 'ng-zorro-antd-mobile';
+import { Location } from '@angular/common';
+
 
 @Component({
   selector: 'app-nav-bar',
@@ -16,7 +18,7 @@ export class NavBarComponent implements OnInit {
   state = {
     selected: ''
   };
-  constructor(private router: Router, private userService: UserService, private _toast: ToastService
+  constructor(private location: Location, private router: Router, private userService: UserService, private _toast: ToastService
   ) { }
   onLogoutClick() {
     axios({
@@ -26,7 +28,7 @@ export class NavBarComponent implements OnInit {
         id: this.userService.user.id
       },
       headers: {
-        'Authorization': `${this.userService.user.token}`
+        Authorization: `${this.userService.user.token}`
       }
     }).then(e => {
       if (e.data.result == 1) {
@@ -36,7 +38,9 @@ export class NavBarComponent implements OnInit {
         this.userService.user.pwd = '';
         this.userService.user.token = '';
         this.userService.user.username = '';
-        this.router.navigateByUrl('/dashboard/news');
+        // this.router.navigateByUrl('/dashboard/news');
+        this.location.back();
+
 
 
       } else {

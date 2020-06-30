@@ -3,7 +3,7 @@
 style="margin-bottom: 10px"
 [option]="{ content: '该组件只支持Touch事件，请使用移动模式/设备打开此页。', marqueeProps: { fps: 100 } }"
 ></NoticeBar>
-<div Button (onClick)="onClick()">刷新闻咯: {{ state.directionName }}</div>
+<!-- <div Button (onClick)="onClick()">刷新闻咯: {{ state.directionName }}</div> -->
 <PullToRefresh
 [ngStyle]="dtPullToRefreshStyle"
 [direction]="state.direction"
@@ -12,11 +12,14 @@ style="margin-bottom: 10px"
 (onRefresh)="pullToRefresh($event)"
 >
 
-<a style="text-decoration: none;" *ngFor="let i of this.state.data" routerLink="/news/detail/{{i}}"  >
+<a style="text-decoration: none;" *ngFor="let i of this.state.data" routerLink="/news/detail/{{List[i].id}}"  >
 
-    <div  class="newsList" > 
-        <div class="text">  {{ i }}{{newsList[i].title}}</div>
-        <div class="img">base64图像{{newsList[i].img}}</div>
+    <div *ngIf="List.length > i "  class="newsList" > 
+        <div  class="text">{{List[i].title}}{{i}}
+
+            <div class="news-time">{{List[i].date}}</div>
+        </div>
+        <div class="img"><img height="100%" width="100%"  src="{{List[i].img}}" alt=""> </div>
     </div>
     <div style="clear: both;"></div>
 

@@ -1,0 +1,24 @@
+<h1>搜索结果</h1>
+<List *ngFor="let item of result" [className]="'my-list'" [renderHeader]="renderHeader2">
+    <!-- <ListItem [arrow]="'horizontal'" (onClick)="onClick()">Title</ListItem> -->
+    <!-- <ListItem [extra]="'extra content'" [arrow]="'horizontal'" (onClick)="onClick()">Title</ListItem> -->
+    <a routerLink="/news/detail/{{item.id}}">
+        <ListItem [arrow]="'horizontal'" [extra]="item.DATE" (onClick)="onClick(item.id)" [align]="'top'"
+            [thumb]="item.img" multipleLine>
+            {{item.title}}
+            <!-- <Brief>subtitle</Brief> -->
+        </ListItem>
+    </a>
+
+</List>
+<div style="clear: both;"></div>
+<div *ngIf="info=='none'">
+    <div class="result-example">
+
+        <!-- <div class="rsub-title">支付失败</div> -->
+        <Result [img]="img3" [title]="'无结果'" [message]="'搜遍了整个数据库，没找到啊！'">
+            <ng-template #img3>
+                <Icon class="rspe" [type]="'cross-circle-o'" [color]="'#F13642'"></Icon>
+            </ng-template>
+        </Result>
+    </div>

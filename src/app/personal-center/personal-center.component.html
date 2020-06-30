@@ -3,7 +3,7 @@
     个人中心建设中。。。。。
 </h1> -->
 
-<div *ngIf="sno==0" style="height: 1000px;background-color: black;">
+<!-- <div *ngIf="sno==0" style="height: 1000px;background-color: black;">
     <h1  style="color: rebeccapurple; text-align: center;">麻烦先登录一下</h1>
     <h1  style="color: rebeccapurple; text-align: center;">麻烦先登录一下</h1>
     <h1  style="color: rebeccapurple; text-align: center;">麻烦先登录一下</h1>
@@ -23,13 +23,27 @@
     <h1  style="color: rebeccapurple; text-align: center;">麻烦先登录一下</h1>
     <h1  style="color: rebeccapurple; text-align: center;">麻烦先登录一下</h1>
     <h1  style="color: rebeccapurple; text-align: center;">麻烦先登录一下</h1>
-</div>
-<h1 style="color: rebeccapurple; text-align: center;">
-  <p>欢迎您{{username}}</p>
-</h1>
-<WingBlank>
+</div> -->
+<div style="height: 110px;" >
+  <WhiteSpace></WhiteSpace>
+  <WhiteSpace></WhiteSpace>
 
+  <img  style="border-radius: 50px; height: 100px;width: 100px;" src="{{avatar}}" alt="">
+
+</div>
+  <!-- <app-image-picker></app-image-picker> -->
+  <div  style="position: fixed;color: rebeccapurple;font-size: 40px; left: 100px;top: 100px;">{{username}}
+  </div>
+
+
+<WingBlank>
+  <WhiteSpace></WhiteSpace>
+  <WhiteSpace></WhiteSpace>
   <WhiteSpace></WhiteSpace>
   <div Button (onClick)="showLogin()">修改密码</div>
+  <div Button (onClick)="updateAvatar()">更换头像</div>
+  <div Button (onClick)="professionalSearch()">高级搜索</div>
+
+
   <WhiteSpace></WhiteSpace>
 </WingBlank>

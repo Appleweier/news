@@ -1,9 +1,12 @@
 <!-- <Navbar [icon]="icon" [rightContent]="rightContent" [mode]="'light'" (onLeftClick)="onLeftClick()">
     NavBar
 </Navbar> -->
-<Navbar [leftContent]="lc" [rightContent]="popover" (onLeftClick)="onLeftClick()">
+
+<div style="position: sticky;top: 0;left: 0;z-index: 999;">
+
+  <Navbar [leftContent]="lc" [rightContent]="popover" (onLeftClick)="onLeftClick()">
     
-    <a id="toIndex" routerLink="/" >民大新闻</a>
+    <a id="toIndex" routerLink="/dashboard/news" >民大新闻</a>
 </Navbar>
 
 <ng-template #lc>
@@ -50,3 +53,4 @@
   <ng-template #icon3>
     <Icon [src]="'../../../assets/icon/log-in-outline.svg'" [size]="'xs'"></Icon>
   </ng-template>
+</div>

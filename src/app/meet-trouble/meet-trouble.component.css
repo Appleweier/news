@@ -1,0 +1,9 @@
+
+
+  h1.start-gradient {
+    font:50px "微软雅黑";
+    font-weight:bold;
+    text-shadow: 1px 2px 3px rgba(67,8,7,0.8);
+    color:#0ec1ce;
+    -webkit-mask-image:-webkit-gradient(linear, 0 0, 0 100%, from(rgba(0, 0, 0, 0.9)), color-stop(40%, rgba(0, 0, 0, 0.5)),to(rgba(0, 0, 0, 0)));
+}

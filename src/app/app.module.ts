@@ -25,6 +25,10 @@ import { MeetTroubleComponent } from './meet-trouble/meet-trouble.component';
 import { NewsPullToRefreshBasicComponent } from './news-pull-to-refresh-basic/news-pull-to-refresh-basic.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
+import { ImagePickerComponent } from './image-picker/image-picker.component';
+import { MyPipePipePipe } from './my-pipe-pipe.pipe';
+import { SearchDetailComponent } from './search-detail/search-detail.component';
+import { ProfessionalSearchComponent } from './professional-search/professional-search.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,11 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
     MeetTroubleComponent,
     NewsPullToRefreshBasicComponent,
     NewsDetailComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    ImagePickerComponent,
+    MyPipePipePipe,
+    SearchDetailComponent,
+    ProfessionalSearchComponent
   ],
   imports: [
     HttpClientModule,

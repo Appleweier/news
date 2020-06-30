@@ -10,14 +10,19 @@ import { RegisterComponent } from './register/register.component';
 import { MeetTroubleComponent } from './meet-trouble/meet-trouble.component';
 import { NewsDetailComponent } from './news-detail/news-detail.component';
 import { SearchBarComponent } from './search-bar/search-bar.component';
-
 import { NewsPullToRefreshBasicComponent } from './news-pull-to-refresh-basic/news-pull-to-refresh-basic.component';
-
+import { ImagePickerComponent } from './image-picker/image-picker.component';
+import { ProfessionalSearchComponent } from './professional-search/professional-search.component';
+import { SearchDetailComponent } from './search-detail/search-detail.component';
+import { AuthGuard } from './auth.guard';
 
 
 const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
+  { path: 'ps', component: ProfessionalSearchComponent, canActivate: [AuthGuard] },
   { path: 'meetTrouble', component: MeetTroubleComponent },
+  { path: 'user/avatar', component: ImagePickerComponent },
+  { path: 'search/detail', component: SearchDetailComponent },
   {
     path: 'dashboard', component: DashboardComponent, children: [
       {

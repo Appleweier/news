@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, delay } from 'rxjs/operators';
 import { NewsBrief } from '../newsBrief';
+import axios from 'axios';
+import { UserService } from '../user.service';
+import { ToastService } from 'ng-zorro-antd-mobile';
+import { DomSanitizer } from '@angular/platform-browser';
+
+
 @Component({
   selector: 'app-news-pull-to-refresh-basic',
   templateUrl: './news-pull-to-refresh-basic.component.html',
@@ -8,103 +14,7 @@ import { NewsBrief } from '../newsBrief';
 })
 export class NewsPullToRefreshBasicComponent implements OnInit {
 
-
-  newsList: NewsBrief[] = [
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-    { img: 'base64', title: '开发ing这是标题' },
-  ];
-
+  List: any;
   isMobile = /Android|webOS|iPhone|iPod|BlackBerry/i.test(window.navigator.userAgent);
   pageLimit = 20;
   public directionCount = 0;
@@ -123,7 +33,7 @@ export class NewsPullToRefreshBasicComponent implements OnInit {
   dtPullToRefreshStyle = { height: this.state.height + 'px' };
 
 
-  constructor() { }
+  constructor(private userService: UserService, private _toast: ToastService, private sanitizer: DomSanitizer) { }
 
   onClick() {
     this.directionCount++;
@@ -150,6 +60,11 @@ export class NewsPullToRefreshBasicComponent implements OnInit {
   }
 
   pullToRefresh(event) {
+    if (this.state.data.length >= this.List.length) {
+      this._toast.info('刷到头了😂');
+      return;
+    }
+    this.getArticle();
     if (event === 'endReachedRefresh') {
       if (this.page < 9) {
         this.page++;
@@ -175,12 +90,33 @@ export class NewsPullToRefreshBasicComponent implements OnInit {
 
   addItems(startIndex) {
     for (let i = startIndex; i < this.pageLimit * (this.page + 1); i++) {
+      // this.state.data.push(i);
+
+      if (i >= 10) {
+        if (i >= this.List.length) {
+          this._toast.info('刷到头了😂');
+          return;
+        }
+      }
       this.state.data.push(i);
     }
   }
 
+  getArticle() {
+    axios.get(this.userService.user.url + '/getarticle')
+      .then(res => {
+        this.List = res.data;
+        console.log(this.List);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
   ngOnInit() {
+    this.getArticle();
     this.addItems(0);
+
   }
 
 }

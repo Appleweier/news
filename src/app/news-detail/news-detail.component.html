@@ -1,2 +1,11 @@
-<p>news-detail works!</p>
-{{id}}      <div Button (onClick)="goBack()">Go Back</div>
+<!-- <p>news-detail works!</p> -->
+
+
+<div style="position: relative;width: 100%;margin-bottom: 300px;">
+    <div class="content" [innerHTML]= "showHtml | Html" ></div>
+
+    <div  Button style="background-color: antiquewhite; position: fixed; left: 0px;top: 30%; border-radius: 20px;"   (onClick)="goBack()">← Back</div>
+
+</div>
+
+

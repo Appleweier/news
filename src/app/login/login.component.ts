@@ -3,6 +3,7 @@ import { ToastService } from 'ng-zorro-antd-mobile';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
 import axios from 'axios';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import axios from 'axios';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  message: string;
   sno: number;
   pwd = '';
   value = '';
@@ -31,10 +32,16 @@ export class LoginComponent implements OnInit {
   autoFocus = { focus: true, date: new Date() };
 
   // tslint:disable-next-line: variable-name
-  constructor(private _toast: ToastService, private router: Router, private userService: UserService) { }
+  constructor(public authService: AuthService, private _toast: ToastService, private router: Router, private userService: UserService) {
+    // this.setMessage();
+
+  }
 
   inputErrorClick(e) {
     this._toast.info('Please enter 11 digits');
+  }
+  setMessage() {
+    this.message = 'Logged ' + (this.authService.isLoggedIn ? 'in' : 'out');
   }
 
   inputChange(e) {
@@ -72,7 +79,7 @@ export class LoginComponent implements OnInit {
     console.log(this.sno + this.pwd);
     // this.userService.userLogin(this.sno, this.pwd);
     if (this.userService.user.token.length < 10) {
-      axios.post('http://127.0.0.1:8080/user/login', {
+      axios.post(`${this.userService.user.url}/user/login`, {
         loginSno: this.sno,
         loginPwd: this.pwd
       })
@@ -83,8 +90,15 @@ export class LoginComponent implements OnInit {
             this.userService.user.id = response.data.id;
             this.userService.user.token = response.data.token;
             this.userService.user.username = response.data.username;
+
+
+            this.authService.isLoggedIn = true;
             this.router.navigateByUrl('personCenter');
             this._toast.info('Login Success');
+
+
+
+
           } else {
             this._toast.fail('Login Falid');
 

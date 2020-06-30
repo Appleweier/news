@@ -50,6 +50,10 @@ export class PersonalCenterComponent implements OnInit {
     );
   }
 
+
+  professionalSearch() {
+    this.router.navigateByUrl('ps');
+  }
   showPromptDefault() {
     this._modal.prompt(
       'defaultValue',
@@ -155,6 +159,24 @@ export class PersonalCenterComponent implements OnInit {
   // }
 
 
+  getAvatar() {
+    // console.log(data[0]);
+    axios.post(`${this.userService.user.url}/user/getavatar`, {
+      id: this.userService.user.id
+    })
+      .then(res => {
+        this.avatar = res.data.avatar;
+        this.userService.user.avatar = this.avatar;
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+
+  updateAvatar() {
+    this.router.navigateByUrl('user/avatar');
+
+  }
 
   // tslint:disable-next-line: variable-name
   constructor(private userService: UserService, private router: Router, private _toast: ToastService, private _modal: ModalService) { }
@@ -172,6 +194,7 @@ export class PersonalCenterComponent implements OnInit {
       this.showAlert();
 
     }
+    this.getAvatar();
   }
 
 }
