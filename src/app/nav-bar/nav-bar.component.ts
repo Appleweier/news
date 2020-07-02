@@ -4,6 +4,7 @@ import { UserService } from '../user.service';
 import axios from 'axios';
 import { ToastService } from 'ng-zorro-antd-mobile';
 import { Location } from '@angular/common';
+import { AuthService } from '../auth.service';
 
 
 @Component({
@@ -18,7 +19,12 @@ export class NavBarComponent implements OnInit {
   state = {
     selected: ''
   };
-  constructor(private location: Location, private router: Router, private userService: UserService, private _toast: ToastService
+  constructor(
+    public authService: AuthService,
+    private location: Location,
+    private router: Router,
+    private userService: UserService,
+    private _toast: ToastService
   ) { }
   onLogoutClick() {
     axios({
@@ -33,6 +39,8 @@ export class NavBarComponent implements OnInit {
     }).then(e => {
       if (e.data.result == 1) {
         this._toast.info(`Logout Success!`);
+        this.authService.isLoggedIn = false;
+        localStorage.removeItem('token');
         this.userService.user.id = 0;
         this.userService.user.sno = 0;
         this.userService.user.pwd = '';
@@ -69,6 +77,8 @@ export class NavBarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log('sd');
+    console.log(localStorage.getItem('token'));
   }
 
 }

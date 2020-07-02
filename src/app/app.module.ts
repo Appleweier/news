@@ -29,6 +29,8 @@ import { ImagePickerComponent } from './image-picker/image-picker.component';
 import { MyPipePipePipe } from './my-pipe-pipe.pipe';
 import { SearchDetailComponent } from './search-detail/search-detail.component';
 import { ProfessionalSearchComponent } from './professional-search/professional-search.component';
+import { LikeHateComponent } from './like-hate/like-hate.component';
+import { RemarkAreaComponent } from './remark-area/remark-area.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +54,9 @@ import { ProfessionalSearchComponent } from './professional-search/professional-
     ImagePickerComponent,
     MyPipePipePipe,
     SearchDetailComponent,
-    ProfessionalSearchComponent
+    ProfessionalSearchComponent,
+    LikeHateComponent,
+    RemarkAreaComponent
   ],
   imports: [
     HttpClientModule,

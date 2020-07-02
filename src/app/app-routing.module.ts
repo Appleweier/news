@@ -21,7 +21,7 @@ const routes: Routes = [
   { path: 'heroes', component: HeroesComponent },
   { path: 'ps', component: ProfessionalSearchComponent, canActivate: [AuthGuard] },
   { path: 'meetTrouble', component: MeetTroubleComponent },
-  { path: 'user/avatar', component: ImagePickerComponent },
+  { path: 'user/avatar', component: ImagePickerComponent, canActivate: [AuthGuard] },
   { path: 'search/detail', component: SearchDetailComponent },
   {
     path: 'dashboard', component: DashboardComponent, children: [
@@ -38,7 +38,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'news/detail/:id', component: NewsDetailComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'personCenter', component: PersonalCenterComponent },
+  { path: 'personCenter', component: PersonalCenterComponent, canActivate: [AuthGuard] },
   { path: 'login/register', component: RegisterComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

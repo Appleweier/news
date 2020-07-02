@@ -1,11 +1,14 @@
 <!-- <p>news-detail works!</p> -->
 
 
-<div style="position: relative;width: 100%;margin-bottom: 300px;">
+<div style="position: relative;width: 100%; height: 80%;">
     <div class="content" [innerHTML]= "showHtml | Html" ></div>
 
     <div  Button style="background-color: antiquewhite; position: fixed; left: 0px;top: 30%; border-radius: 20px;"   (onClick)="goBack()">← Back</div>
 
 </div>
+<app-like-hate [id]="id" ></app-like-hate>
+<app-remark-area [id]="id"></app-remark-area>
+
 
 

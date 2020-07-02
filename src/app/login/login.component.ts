@@ -89,6 +89,7 @@ export class LoginComponent implements OnInit {
             console.log('success');
             this.userService.user.id = response.data.id;
             this.userService.user.token = response.data.token;
+            localStorage.setItem('token', response.data.token);
             this.userService.user.username = response.data.username;
 
 

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation  } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { UserService } from '../user.service';
@@ -14,6 +14,11 @@ import { HttpClient } from "@angular/common/http"
 })
 export class SearchDetailComponent implements OnInit {
 
+  content: any;
+  title: any;
+  newsType: any;
+  sname: any;
+  ename: any;
   info: string;
   result: any;
   constructor(
@@ -29,19 +34,54 @@ export class SearchDetailComponent implements OnInit {
     console.log(localStorage.getItem('info'));
     this.info = localStorage.getItem('info');
 
-    axios.post(`${this.userService.user.url}/searchByTitle`, {
-      title: this.info
-    })
-      .then(res => {
-        if(res.data.length==0){
-          this.info = 'none';
-        }
-        this.result = res.data;
-        console.log(res.data);
+    if (this.info === '' || this.info == null) {
+      // console.log(this.info);
+      this.sname = localStorage.getItem('st');
+      this.ename = localStorage.getItem('et');
+      this.newsType = localStorage.getItem('type');
+      this.title = localStorage.getItem('title');
+
+      this.content = localStorage.getItem('content');
+      axios.post(`${this.userService.user.url}/professionalSearch`, {
+        st: this.sname,
+        et: this.ename,
+        type: this.newsType,
+        title: this.title,
+        content: this.content
       })
-      .catch(err => {
-        console.error(err);
-      });
+        .then(res => {
+          if (res.data.length == 0) {
+            this.info = 'none';
+          }
+          this.result = res.data;
+          console.log(res.data);
+        })
+        .catch(err => {
+          console.error(err);
+        });
+
+    } else {
+
+
+
+      axios.post(`${this.userService.user.url}/searchByTitle`, {
+        title: this.info
+      })
+        .then(res => {
+          if (res.data.length == 0) {
+            this.info = 'none';
+          }
+          this.result = res.data;
+          console.log(res.data);
+          localStorage.removeItem('info');
+        })
+        .catch(err => {
+          console.error(err);
+        });
+
+
+    }
+
   }
 
   onClick(id: number) {

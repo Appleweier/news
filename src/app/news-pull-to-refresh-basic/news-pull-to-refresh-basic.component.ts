@@ -107,6 +107,8 @@ export class NewsPullToRefreshBasicComponent implements OnInit {
       .then(res => {
         this.List = res.data;
         console.log(this.List);
+        this.addItems(0);
+
       })
       .catch(err => {
         console.error(err);
@@ -115,7 +117,6 @@ export class NewsPullToRefreshBasicComponent implements OnInit {
 
   ngOnInit() {
     this.getArticle();
-    this.addItems(0);
 
   }
 

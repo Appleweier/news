@@ -1,0 +1,8 @@
+<div style="clear: both;"></div>
+<!-- <p>{{id}}</p> -->
+<div style="display: flex;justify-content: center;width: 100%;" >
+    
+    <div style=" margin-bottom: 20px; display: flex; width: 100px;" Button disabled= "{{isLiked}}" [type]="'warning'" (onClick)="onLikeClick()">Like {{like}}</div>
+    <div style="width: 20px;" ></div>
+    <div style=" display: flex; width: 100px;" Button  disabled= "{{isLiked}}"  [type]="'primary'" (onClick)="onDisLikeClick()">Hate {{dislike}}</div>
+</div>

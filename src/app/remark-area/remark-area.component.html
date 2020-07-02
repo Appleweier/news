@@ -1,0 +1,32 @@
+<div style="clear: both;"></div>
+
+<div style="margin-bottom: 200px;">
+
+    <div *ngFor="let item of tablePageList ; let i=index" class="aRemark">
+        <div class="name">
+            <img src="{{item.avatar}}" alt="">{{item.username}} {{i+1}}F
+        </div>
+        <div class="content">{{item.remark_content}}</div>
+        <div class="likeandhate">
+            <div class="view" (click)="onLike(item)">👍{{item.like_num}} </div>
+            <div (click)="onDislike(item)" class="view">👎{{item.dislike_num}}</div>
+        </div>
+        <div class="time">{{item.remark_time}}</div>
+    </div>
+
+    <div>
+        <button type="button" [disabled]="!preShow" (click)="showPrePage()">上一页</button>
+        <input type="text" (change)="onChangePage($event.target.value)" placeholder="{{curPage}}" value="{{curPage}}">
+        <span> / {{pageNo}} 页</span>
+        <button type="button" [disabled]="!nextShow" (click)="showNextPage()">下一页</button>
+        <!-- <span> 每页显示 : </span>
+        <select (change)="onChangePageSize($event.target.value)">
+            <option *ngFor="let pageSize of pageSizes" value="{{pageSize}}">{{pageSize}}</option>
+        </select> -->
+    </div>
+    <span>共{{tablePageList.length}}条</span>
+    
+
+
+
+</div>

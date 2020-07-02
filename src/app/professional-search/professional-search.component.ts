@@ -1,6 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { ToastService } from 'ng-zorro-antd-mobile';
-
+import { UserService } from '../user.service';
+import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms'; // <--- JavaScript import from Angular
+import axios from 'axios';
 @Component({
   selector: 'app-professional-search',
   encapsulation: ViewEncapsulation.None,
@@ -10,7 +13,6 @@ import { ToastService } from 'ng-zorro-antd-mobile';
     <List [className]="'date-picker-list'">
       <ListItem
         DatePicker
-        [extra]="currentDateFormat(startValue)"
         [arrow]="'horizontal'"
         [mode]="'datetime'"
         [(ngModel)]="startValue"
@@ -21,7 +23,6 @@ import { ToastService } from 'ng-zorro-antd-mobile';
       </ListItem>
       <ListItem
         DatePicker
-        [extra]="currentDateFormat(endValue)"
         [arrow]="'horizontal'"
         [mode]="'datetime'"
         [(ngModel)]="endValue"
@@ -45,12 +46,14 @@ import { ToastService } from 'ng-zorro-antd-mobile';
       <div class="am-listr" style="margin:0;">
         <div class="am-list-headerr">根据标题内容搜索</div>
         <div class="am-list-bodyr">
-          <InputItem [clear]="true" [placeholder]="'auto focus'" [focus]="autoFocus" [content]="'标题'"></InputItem>
+
+          <InputItem [(ngModel)]="title"  [clear]="true" [placeholder]="'auto focus'" [focus]="autoFocus" [content]="'标题'"></InputItem>
           <InputItem
             [clear]="true"
             [placeholder]="'click the button below to focus'"
             [focus]="inputFocus"
             [content]="'内容'"
+            [(ngModel)]="content"
           >
           </InputItem>
           <div class="am-list-itemr am-list-item-middler">
@@ -126,18 +129,18 @@ import { ToastService } from 'ng-zorro-antd-mobile';
   ]
 })
 export class ProfessionalSearchComponent {
-
+  content = '';
+  title = '';
+  newsType = 0;
   startValue = new Date();
   endValue = new Date();
-
-
   disabled = true;
   selectedStatus1 = { value: 0, name: '校园' };
   selectedStatus2 = { value: 0, name: 'basketball', extra: 'details' };
   data = [{ value: 0, name: '校园' }, { value: 1, name: 'IT' }];
   data2 = [{ value: 0, name: 'basketball', extra: 'details' }, { value: 1, name: 'football', extra: 'details' }];
-  sname = '选择';
-  ename = '选择';
+  sname = '';
+  ename = '';
   value = '';
   error = false;
   numberFocus = {
@@ -158,11 +161,23 @@ export class ProfessionalSearchComponent {
 
 
   // tslint:disable-next-line: variable-name
-  constructor(private _toast: ToastService,
+  constructor(private router: Router, private _toast: ToastService, private formModel: FormsModule, private userService: UserService
   ) { }
 
+
+
   onClick() {
-    console.log('click');
+
+    localStorage.setItem('st', this.sname);
+    localStorage.setItem('et', this.ename);
+    localStorage.setItem('type', String(this.newsType));
+    localStorage.setItem('title', this.title);
+    localStorage.setItem('content', this.content);
+    this.router.navigateByUrl('search/detail');
+
+    // console.log('click');
+    // console.log(`开始时间${this.sname},结束时间${this.ename},新闻类型${this.newsType},标题${this.title},内容${this.content}`);
+
   }
 
   inputErrorClick(e) {
@@ -262,11 +277,17 @@ export class ProfessionalSearchComponent {
   onChange = event => {
     console.log('ngmodel value: ', JSON.stringify(this.selectedStatus1));
     console.log('output radio status: ', JSON.stringify(event));
+    this.newsType = event.value;
+    console.log(this.newsType);
+
   }
 
   onChange2 = event => {
     console.log('ngmodel value: ', JSON.stringify(this.selectedStatus2));
     console.log('output radio status:  ', JSON.stringify(event));
+    this.newsType = 0;
+    console.log(this.newsType);
+
   }
 
   onChange3 = e => {
