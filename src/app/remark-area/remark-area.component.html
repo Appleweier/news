@@ -1,6 +1,6 @@
 <div style="clear: both;"></div>
 
-<div style="margin-bottom: 200px;">
+<div style="margin-bottom: 200px;width: 95%;">
 
     <div *ngFor="let item of tablePageList ; let i=index" class="aRemark">
         <div class="name">
@@ -16,7 +16,7 @@
 
     <div>
         <button type="button" [disabled]="!preShow" (click)="showPrePage()">上一页</button>
-        <input type="text" (change)="onChangePage($event.target.value)" placeholder="{{curPage}}" value="{{curPage}}">
+        <input style="width: 20px;" type="text" (change)="onChangePage($event.target.value)" placeholder="{{curPage}}" value="{{curPage}}">
         <span> / {{pageNo}} 页</span>
         <button type="button" [disabled]="!nextShow" (click)="showNextPage()">下一页</button>
         <!-- <span> 每页显示 : </span>
@@ -25,6 +25,28 @@
         </select> -->
     </div>
     <span>共{{tablePageList.length}}条</span>
+
+    <div *ngIf="!isLogin" >
+        登陆之后才可以进行评论哦！
+    </div>
+
+    <div *ngIf="isLogin" class="am-demo-page">
+
+
+   
+        <div class="am-list" style="margin:0;">
+          <div class="am-list-header">期待你的评论</div>
+          <div class="am-list-body">
+            <TextareaItem [(ngModel)] = "values" [rows]="5" [count]="100" ></TextareaItem>
+          </div>
+        </div>
+        <WhiteSpace></WhiteSpace>
+        <div Button (onClick)="onClick()">评论</div>
+        <WhiteSpace></WhiteSpace>
+        
+      </div>
+
+
     
 
 

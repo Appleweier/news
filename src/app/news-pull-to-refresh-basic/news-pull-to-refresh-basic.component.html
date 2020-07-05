@@ -19,11 +19,11 @@
     <a style="text-decoration: none;" *ngFor="let i of this.state.data" routerLink="/news/detail/{{List[i].id}}"  >
     
         <div *ngIf="List.length > i "  class="newsList" > 
-            <div  class="text">{{List[i].title}}{{i}}
+            <div style="color: black;" class="text">{{List[i].title}}
     
                 <div class="news-time">{{List[i].date}}</div>
             </div>
-            <div class="img"><img height="100%" width="100%"  src="{{List[i].img}}" alt=""> </div>
+            <div class="img"><img style="min-width: 100%;max-height: 100%;" src="{{List[i].img}}" alt=""> </div>
         </div>
         <div style="clear: both;"></div>
     

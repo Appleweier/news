@@ -34,7 +34,7 @@ const routes: Routes = [
       }
     ]
   },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard/news', pathMatch: 'full' },
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'news/detail/:id', component: NewsDetailComponent },
   { path: 'login', component: LoginComponent },

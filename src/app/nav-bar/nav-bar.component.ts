@@ -79,6 +79,25 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
     console.log('sd');
     console.log(localStorage.getItem('token'));
+    axios.post(`${this.userService.user.url}/user/login`, {
+      token: localStorage.getItem('token')
+    })
+      .then(res => {
+        console.log(res.data);
+        if (res.data.result==1) {
+          this.authService.isLoggedIn = true;
+          this.userService.user.sno = res.data.sno;
+          this.userService.user.username = res.data.name;
+          this.userService.user.id = res.data.id;
+          this._toast.info('Login Success');
+          this.userService.user.token = localStorage.getItem('token');
+
+
+        }
+      })
+      .catch(err => {
+        console.error(err);
+      });
   }
 
 }

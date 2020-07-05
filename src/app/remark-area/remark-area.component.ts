@@ -2,6 +2,9 @@ import { Component, OnInit, Input } from '@angular/core';
 import axios from 'axios';
 import { UserService } from '../user.service';
 import { delay } from 'rxjs/operators';
+import { AuthService } from '../auth.service';
+import { ToastService } from 'ng-zorro-antd-mobile';
+
 
 @Component({
   selector: 'app-remark-area',
@@ -15,6 +18,8 @@ export class RemarkAreaComponent implements OnInit {
     nextText: 'Next'
   };
 
+  isLogin = this.as.isLoggedIn;
+
   tablePageList = [];  // 分页后前台显示数据
   pageNo = 1; // 当前页码
   preShow = false; // 上一页
@@ -25,6 +30,9 @@ export class RemarkAreaComponent implements OnInit {
   curPage = 1; // 当前页
 
   canOK = false;
+  values: '快来评论把！';
+
+
 
 
 
@@ -33,9 +41,28 @@ export class RemarkAreaComponent implements OnInit {
   cp(e) {
     console.log(e);
   }
+
+  onClick() {
+    console.log(this.values);
+    axios.post(`${this.url}/addARemark`, {
+      remarkContent: this.values,
+      articleId: this.id,
+      userId: this.userService.user.id
+    })
+    .then(res => {
+      console.log(res);
+      this.getRemark();
+      this.toast.info('评论成功！');
+      this.values = '快来评论把！';
+
+    })
+    .catch(err => {
+      console.error(err);
+    });
+  }
   onLike(e) {
     e.like_num++;
-    console.log(e.id);
+    console.log(e.id + this.as.isLoggedIn);
     axios.post(`${this.url}/article/remark/like`, {
       id: e.id
     })
@@ -137,7 +164,7 @@ export class RemarkAreaComponent implements OnInit {
       });
   }
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private as: AuthService, private toast: ToastService) {
 
   }
 
