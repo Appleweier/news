@@ -14,6 +14,7 @@ export class NewsDetailComponent implements OnInit {
 
   id: string;
   showHtml: any;
+  text: any;
   constructor(
     private route: ActivatedRoute,
     private location: Location,

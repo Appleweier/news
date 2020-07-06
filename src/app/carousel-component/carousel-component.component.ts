@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, style, transition, query, animate, group } from '@angular/animations';
 import { CommentStmt } from '@angular/compiler';
+import { UserService } from '../user.service';
+import axios from 'axios';
 
 @Component({
   selector: 'app-carousel-component',
@@ -39,23 +41,52 @@ export class CarouselComponentComponent implements OnInit {
   img2 = '../../assets/2.jpg';
   img3 = '../../assets/3.jpg';
   temp: string;
+  id1: number;
+  id2: number;
+  id3: number;
+  nowId: number;
 
-  constructor() { }
+  idIndex = [];
+  imgIndex = [];
+
+  constructor(private userService: UserService) { }
 
 
 
   ngOnInit(): void {
+
+
+    // axios.post(`${this.userService.user.url}/getRotation`)
+    // .then(res => {
+    //   console.log(res);
+    //   this.id1 = res.data.id1;
+    //   this.id1 = res.data.id1;
+    //   this.id1 = res.data.id1;
+    //   this.idIndex.push(this.id1);
+    //   this.idIndex.push(this.id2);
+    //   this.idIndex.push(this.id3);
+    //   this.imgIndex.push(res.data.img1);
+    //   this.imgIndex.push(res.data.img2);
+    //   this.imgIndex.push(res.data.img3);
+
+
+
+    // })
+    // .catch(err => {
+    //   console.error(err);
+    // });
     setInterval(e => {
-      let num: any = this.img2.charAt(13);
+      const num: any = this.img2.charAt(13);
       let n = Number(num);
       n = (n + 1) % 4;
-      if (n == 0) {
+      if (n === 0) {
         n++;
       }
-      this.img2 = '../../assets/' + n + '.jpg';
+      this.img2 =  `../../assets/${n}.jpg`;
       // console.log(num);
 
     }, 3000);
+
   }
 
 }

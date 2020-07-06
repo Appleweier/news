@@ -81,7 +81,7 @@ export class LoginComponent implements OnInit {
     if (this.userService.user.token.length < 10) {
       axios.post(`${this.userService.user.url}/user/login`, {
         loginSno: this.sno,
-        loginPwd: this.pwd
+        loginPwd: this.pwd.replace(/\s+/g, '')
       })
         .then(response => {
           if (response.data.result == 1) {

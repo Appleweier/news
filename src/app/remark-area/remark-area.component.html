@@ -1,10 +1,12 @@
 <div style="clear: both;"></div>
 
 <div style="margin-bottom: 200px;width: 95%;">
-
+    <WhiteSpace></WhiteSpace>
+    <div Button (onClick)="showShareActionSheet()">分享文章</div>
+    <WhiteSpace></WhiteSpace>
     <div *ngFor="let item of tablePageList ; let i=index" class="aRemark">
         <div class="name">
-            <img src="{{item.avatar}}" alt="">{{item.username}} {{i+1}}F
+            <img src="{{item.avatar}}" alt="">{{item.username}} {{ (i + 1) + 5 * (curPage - 1)}}F
         </div>
         <div class="content">{{item.remark_content}}</div>
         <div class="likeandhate">
@@ -14,40 +16,73 @@
         <div class="time">{{item.remark_time}}</div>
     </div>
 
+
     <div>
+        <div style="display: flex;text-align: center;">
+            <div [disabled]="!preShow" (click)="showPrePage()" style="width: 30%; margin-left: 25px;" Button
+                [icon]="'left'">上一页</div>
+
+            <div style="width: 30%;" Button>
+
+                <input style="width: 30px;text-decoration: none;outline: none;border: 1px;font-size: 19px;" type="text"
+                    (change)="onChangePage($event.target.value)" placeholder="{{curPage}}" value="{{curPage}}">
+                <span> / {{pageNo}} 页</span>
+
+            </div>
+
+
+            <div [disabled]="!nextShow" (click)="showNextPage()" style="width: 30%;" Button [icon]="'right'">下一页</div>
+        </div>
+
+
+        <!-- 
         <button type="button" [disabled]="!preShow" (click)="showPrePage()">上一页</button>
-        <input style="width: 20px;" type="text" (change)="onChangePage($event.target.value)" placeholder="{{curPage}}" value="{{curPage}}">
+        <input style="width: 20px;" type="text" (change)="onChangePage($event.target.value)" placeholder="{{curPage}}"
+            value="{{curPage}}">
         <span> / {{pageNo}} 页</span>
-        <button type="button" [disabled]="!nextShow" (click)="showNextPage()">下一页</button>
-        <!-- <span> 每页显示 : </span>
+        <button type="button" [disabled]="!nextShow" (click)="showNextPage()">下一页</button> -->
+
+        <!-- <ListItem
+        Picker
+        [extra]="name3"
+        [arrow]="'horizontal'"
+        [data]="singleArea"
+        [(ngModel)]="value3"
+        (ngModelChange)="onOk3($event)"
+        (change)="onChangePageSize($event.target.value)"
+      >
+        每页显示
+      </ListItem> -->
+
+        <span> 每页显示 : </span>
         <select (change)="onChangePageSize($event.target.value)">
             <option *ngFor="let pageSize of pageSizes" value="{{pageSize}}">{{pageSize}}</option>
-        </select> -->
+        </select>
     </div>
     <span>共{{tablePageList.length}}条</span>
 
-    <div *ngIf="!isLogin" >
+    <div *ngIf="!isLogin">
         登陆之后才可以进行评论哦！
     </div>
 
     <div *ngIf="isLogin" class="am-demo-page">
 
 
-   
+
         <div class="am-list" style="margin:0;">
-          <div class="am-list-header">期待你的评论</div>
-          <div class="am-list-body">
-            <TextareaItem [(ngModel)] = "values" [rows]="5" [count]="100" ></TextareaItem>
-          </div>
+            <div class="am-list-header">期待你的评论</div>
+            <div class="am-list-body">
+                <TextareaItem [(ngModel)]="values" [rows]="5" [count]="100"></TextareaItem>
+            </div>
         </div>
         <WhiteSpace></WhiteSpace>
         <div Button (onClick)="onClick()">评论</div>
         <WhiteSpace></WhiteSpace>
-        
-      </div>
+
+    </div>
 
 
-    
+
 
 
 
