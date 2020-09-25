@@ -5,6 +5,7 @@ import axios from 'axios';
 import { ToastService } from 'ng-zorro-antd-mobile';
 import { Location } from '@angular/common';
 import { AuthService } from '../auth.service';
+import { WeatherService } from '../weather.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class NavBarComponent implements OnInit {
   constructor(
     public authService: AuthService,
     private location: Location,
+    private ws: WeatherService,
     private router: Router,
     private userService: UserService,
     private _toast: ToastService
@@ -84,7 +86,7 @@ export class NavBarComponent implements OnInit {
     })
       .then(res => {
         console.log(res.data);
-        if (res.data.result==1) {
+        if (res.data.result == 1) {
           this.authService.isLoggedIn = true;
           this.userService.user.sno = res.data.sno;
           this.userService.user.username = res.data.name;
@@ -98,6 +100,12 @@ export class NavBarComponent implements OnInit {
       .catch(err => {
         console.error(err);
       });
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        console.log(`纬度=${position.coords.latitude}  经度=${position.coords.longitude}`);
+      });
+    }
   }
 
 }
