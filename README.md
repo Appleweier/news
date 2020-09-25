@@ -1,7 +1,10 @@
-# AngularTourOfheroes
+# 民大新闻App
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
-
+这个项目由[Angular CLI](https://github.com/angular/angular-cli) version 9.0.2 生成骨架。
+开发目的是写一个新闻App的前端，使用Angular开发SPA
+此项目比较严格的按照了Angular的官方指南提供的编程风格进行开发，希望可以给大家学习交流
+（有点小遗憾的是使用了axios进行网络通信而不是angular的）
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
